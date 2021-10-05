@@ -1,265 +1,237 @@
-## ufc
+## Algorítmos mais importantes de FUP
 
-# Laço
+![](fila.png)
 
-As atividades devem usar apenas laço. Não use vetores para nenhuma delas. Nosso objetivo é aprimorar nosso domínio de laço.
-
-Clique no nome da linguagem para ver a resposta ou a dica[C, Python, Dica]. 
-
-Sugestão: use o google-chrome.
-[bita](bita.md#ufc)
----
-### Faça um laço que mostre os números ímpares entre 0 e 20. 
->`1 3 5 ... 19`
-<details><summary>C</summary>
-```c++
-for(int i = 1; i < 20; i += 2)
-    cout << i << " ";
-```
-</details>
-
-<details><summary>Python</summary>
-```python
-for i in range(1, 20, 2):
-    print i + " ",
-```
-</details>
-
----
-### Faça um laço para imprimir de 1 a 31, de 3 em 3 
->`1 4 7 10 ... 31`
-<details><summary>C</summary>
-```c++
-for(int i = 1; i < 31; i += 2)
-    cout << i << " ";
-```
-</details>
-
-<details><summary>Python</summary>
-```python
-for i in range(1, 31, 3):
-    print i + " ",
-```
-</details>
-
----
-### Um laço para imprimir de 10 até 0 de 2 em 2
->`10 8 6 4 2 0` 
-
-<details><summary>C</summary>
-```c++
-for(int i = 10; i >= 0; i -= 2)
-    cout << i << " ";
-```
-</details>
-
-<details><summary>Python</summary>
-```python
-for i in range(10, 0, -2):
-    print i + " ",
-```
-</details>
-
----
-### Com dois contadores, imprima 'i' indo de 0 até 10 enquanto 'j' vai de 10 até 0. Em um mesmo laço, a cada interação incremente 'i' e decremente 'j'. Imprima ambos.
-
-> `[0 10] [1 9] [2 8] ... [8 2] [9 1] [10 0]`
-<details><summary>C</summary>
-```c++
-//opcao 1
-for(int i = 0, j = 10; i <= 10; i++, j--)
-    cout << i << " " << j << " ";
-//opcao 2
-int j = 10;
-for(int i = 0; i <= 10; i++){
-    cout << i << " " << j << " ";
-    j--;
-}
-    
-```
-</details>
-
-<details><summary>Python</summary>
-```python
-for i in range(10, 0, -2):
-    print i + " ",
-```
-</details>
-
----
-### Faça o exercício anterior usando apenas um contador.
->`dica: imprima << i << " " << (10 - i)` 
-
----
-### Usando um laço, sorteie 5 números entre 0 e 100, imprima-os, e no final, mostre o menor.
-    20 43 15 18 91 12
-    12
-
-<details><summary>C</summary>
-```c++
-#include <stdlib.h>
-#include <time.h>
-#include <stdio.h>
-int main(){
-    srand(time(NULL));//inicializando a aleatoriedade
-    int min = 101;//precisa ser maior que o máximo
-    for(int i = 0; i < 5; i++){
-        int num = rand() % 101;
-        printf("%d ", num);
-        if(num < min)
-            min = num;
-    }
-    printf("\n%d", min); 
-    return 0;
-}
-```
-</details>
-
----
-### Usando um laço apenas, sorteie 5 números e mostre ao final o menor e o maior.
-    20 43 15 18 91 12
-    12 43
+## Fila dos estressados
 
 
-<details><summary>C</summary>
-```c++
-    int min = 101;
-    int max = 0;
-    for(int i = 0; i < 5; i++){
-        int num = rand() % 101;
-        printf("%d ", num);
-        if(num < min)
-            min = num;
-        if(num > max)
-            max = num;
-    }
-    printf("\n%d %d", min, max); 
-    return 0;
-}
-```
-</details>
+- Na entrada de um evento de um experimento social, os participantes ganhavam uma pulseira especial que precisavam ficar utilizando.
+- A pulseira informava, num pequeno visor, um número inteiro que representava o nível de stress daquele participante.
+- Nenhum participante sabia o que aquele número significava.
+- O número 1 significava totalmente tranquilo e ia aumentando conforme o stress do participante aumentava a´té o valor máximo de 99.
+- Para fazer uma representação lógica, os números positivos representam homens e os números negativos representam mulheres em um vetor de inteiros.
+- Precisamos escrever os algorítmos que identifiquem informações importantes sobre os participantes da fila.
 
----
-### Usando um laço apenas, sorteie 5 números. Retire o maior e o menor e mostre a média dos que sobraram.
-
-<details><summary>Clique para DICA</summary>
-```
-    inicialize maior e menor
-    inicialize total com 0
-    faca 5 vezes:
-        sorteie um numero
-        se numero maior que maior
-            ele sera o novo maior
-        se numero menor que menor
-            ele sera o novo menor
-        aumente total do valor de numero
-    retire do total o maior e o menor
-    divida o total por 3
-    imprima a media
-}
-```
-</details>
-
-
-<details><summary>C</summary>
-```c
-    int min = 101;
-    int max = 0;
-    int total = 0;
-    for(int i = 0; i < 5; i++){
-        int num = rand() % 101;
-        printf("%d ", num);
-        if(num < min)
-            min = num;
-        if(num > max)
-            max = num;
-        total += num;
-    }
-    total = total - max - min;
-    float media = total / 3;
-    printf("\n%f", media); 
-    return 0;
-```
-</details>
-
----
-### Pegar números do usuários até ele digitar -1, depois imprima a média.
-
-<details><summary>C</summary>
-```c
-    int qtd = 0;
-    int soma = 0;
-    int num;//o numero do usuario
-    while(num != -1){
-        puts("Digite um numero, -1 para sair");
-        scanf("%d", &num);
-        if(num == -1)
-            break;
-        total += num;
-        qtd++;
-    }
-    printf("%f", (total/(float)qtd));
-    return 0;
-```
-</details>
-
+**Exemplos:** 
+- `{]` equivale a uma fila vazia.
+- `{-1, -50, -99}` equivale a uma mulher totalmente tranquila, uma mulher médio estressada e uma mulher extremamente estressada.
+- `{80, 70, 90, -4}` equivale a três homens estressados e uma mulher tranquila. 
 ---
 
-<details><summary>C</summary>
-```c
-    int qtd = 0;
-    int soma = 0;
-    int num;//o numero do usuario
-    while(num != -1){
-        puts("Digite um numero, -1 para sair");
-        scanf("%d", &num);
-        if(num == -1)
-            break;
-        total += num;
-        qtd++;
-    }
-    printf("%f", (total/(float)qtd));
-    return 0;
-```
-</details>
+<!--TOC_BEGIN-->
+- [Algorítmos mais importantes de FUP](#algorítmos-mais-importantes-de-fup)
+- [Fila dos estressados](#fila-dos-estressados)
+- [Exercícios](#exercícios)
+- [BLOCO I](#bloco-i)
+    - [**Busca**: 4 funções](#busca-4-funções)
+    - [**Melhor caso**: 4 funções](#melhor-caso-4-funções)
+    - [**Contagem**: 4 funções](#contagem-4-funções)
+- [BLOCO II](#bloco-ii)
+    - [**Filter - Operações de Filtragem**: 4 funções](#filter---operações-de-filtragem-4-funções)
+    - [**Acesso**: 5 funções](#acesso-5-funções)
+    - [**Conjuntos**: 3 funções](#conjuntos-3-funções)
+- [BLOCO III](#bloco-iii)
+    - [**Map - Manipulação**: 3 funções](#map---manipulação-3-funções)
+    - [**Proximidade**: 2 funções](#proximidade-2-funções)
+    - [**Sequências**: 3 funções](#sequências-3-funções)
+    - [**Grupos**: 2 funções](#grupos-2-funções)
+    - [**Alteração**: 3 funções](#alteração-3-funções)
+<!--TOC_END-->
 
----
-### Dado um número qualquer, imprima ao contrario.
-    >> 574839
-    << 938475
-<details><summary>DICA</summary>
-```DICA
-    leia numero
-    enquanto numero for diferente de zero
-        unidade eh numero modulo 10
-        imprima unidade
-        divida o numero por 10
-```
-</details>
 
-<details><summary>C</summary>
-```c
-    int num = 0;
-    scanf("%d", num);
-    while(num != 0){
-        printf("%d", (num % 10));
-        num = num / 10;
-    }
-```
-</details>
+## Exercícios
 
----
-### Dado um número e uma posição, retorne o dígito correspondente. 0 para unidade, 1 para dezena, 2 para centena, etc.
-    >> 3652 2
-    << 6
-    
-<details><summary>C</summary>
-```c
-    int num = 0;
-    int digito;
-    scanf("%d %d", num, digito);
-    for(int i = 0; i < digito; i++)
-        num = num / 10;
-    printf("%d", (num % 10));
+## BLOCO I
+
+### **Busca**: 4 funções
+- **existe**: Alguém com o valor X está na fila?
+```cpp
+bool existe(vector<int> fila, int x);
+existe({-1, -50, -99}, -1); // true
+existe({-1, -50, -99}, 10); // false
 ```
-</details>
+
+- **contar**: Quantas vezes o valor X apareceu na fila?
+
+```cpp
+int contar(vector<int> fila, int x);
+contar({-1, -50, -1 -99}, -1); // 2
+contar({-1, -50, -1, -99}, 10); // 0
+```
+
+- **procurar_valor**: Em que posição da fila aparece X pela primeira vez?
+```cpp
+//retorna -1 se não encontrar
+int procurar_valor(vector<int> fila, int x);
+procurar_valor({-1, -50, -1 -99}, -50); // 1
+procurar_valor({-1, -50, -1, -99}, 10); // -1
+```
+- **procurar_valor_apartir**: Dada a posição para iniciar a busca, qual a próxima posição em que aparece X?
+```cpp
+//retorna -1 se não encontrar
+int procurar_valor(vector<int> fila, int x, int inicio);
+procurar_valor({5, 3, -1, -50, -1, -99}, -1, 0); // 2
+procurar_valor({5, 3, -1, -50, -1, -99}, -1, 3); // 4
+procurar_valor({5, 3, -1, -50, -1, -99}, -1, 4); // 4
+```
+
+### **Melhor caso**: 4 funções
+- **procurar_menor**: qual o menor valor da lista?
+```cpp
+int procurar_menor(vector<int> fila);
+procurar_menor({5, 3, -1, -50, -1, -99}); // -99
+```
+- **procurar_menor_pos**: qual a posição do menor valor da lista?
+```cpp
+int procurar_menor_pos(vector<int> fila);
+procurar_menor_pos({5, 3, -1, -50, -1, -99}); // 5
+```
+- **procurar_menor_pos_apartir**: Dada a posição para iniciar a busca, qual a posição do menor valor da lista?
+```cpp
+int procurar_menor_pos_apartir(vector<int> fila, int inicio);
+procurar_menor_pos_apartir({5, 3, -1, -50, -1, 10}, 3); // 3
+```
+- **procurar_melhor_se**: qual a posição do HOMEM mais calmo? (menor valor maior que 0)
+```cpp
+//retorna -1 se não encontrar
+int procurar_melhor_pos_se(vector<int> fila);
+procurar_melhor_pos_se({5, 3, -1, -50, -1, -99}); // 1
+procurar_melhor_pos_se({-1, -50, -1, -99}); // -1
+```
+
+
+### **Contagem**: 4 funções
+- **calcular_stress_medio**: qual a média de stress da fila? (abs)
+```cpp
+float calcular_stress_medio(vector<int> fila);
+```
+- **mais_homens_ou_mulheres**: Na fila existem mais homens ou mulheres?
+```cpp
+//retorna "homens", "mulheres" ou "empate"
+string mais_homens_ou_mulheres(vector<int> fila);
+mais_homens_ou_mulheres({5, 3, -1, -50, -1, -99}); // "mulheres"
+mais_homens_ou_mulheres({5, 3, 1, -50, -1, -99}); // "empate"
+mais_homens_ou_mulheres({5, 3, 1, -50, -1, 99}); // "homens"
+```
+- **qual_metade_eh_mais_estressada**: O nível de stress somado de todas as pessoas da primeira metade é maior que o nível de stress somado das pessoas da segunda metade da fila? (abs)
+```cpp
+//retorna "primeira", "segunda" ou "empate"
+string mais_homens_ou_mulheres(vector<int> fila);
+mais_homens_ou_mulheres({5, 3, -1, -50, -1, -99}); // "segunda"
+mais_homens_ou_mulheres({50, 98, 2, -50, -1, -99}); // "empate"
+mais_homens_ou_mulheres({-51, 99, 1, -50, -1, -99}); // "primeira"
+```
+
+- **homens_sao_mais_estressados_que_mulheres**: a média do stress dos homens é maior que a das mulheres? 
+
+## BLOCO II
+
+### **Filter - Operações de Filtragem**: 4 funções
+- **clonar**: retorna um novo vetor copiando os valores do vetor de entrada
+```cpp
+vector<int> clone(const vector<int>& v);
+```
+
+- **pegar_homens**: retorne uma lista com os homens (valores positivos)
+
+```cpp
+vector<int> pegar_homens(const vector<int>& v);
+```
+
+- **pegar_calmos**: retorne uma lista com as pessoas com stress menor que 10 (positivos menor que 10) (abs)
+
+```cpp
+vector<int> pegar_calmos(const vector<int>& v);
+```
+
+- **pegar_mulheres_calmas**: retorne uma lista com as mulheres com nível de stress menor que 10.(negativos menor que 10)
+
+```cpp
+vector<int> pegar_mulheres_calmas(const vector<int>& v);
+```
+
+### **Acesso**: 5 funções
+- **inverter_com_copia**
+```cpp
+//retorna um novo vetor com os dados invertidos
+vector<int> inverter_com_copia(const vector<int>& v);
+```
+
+- **reverter_inplace**
+```cpp
+//inverte os valores do vetor de entrada sem uso de vetor auxiliar
+void inverter_inplace(vector<int>& v);
+```
+
+- **sortear**
+```cpp
+//retorna aleatoriamente um elemento do vetor
+int sortear(const vector<int>& v);
+```
+
+- **embaralhar**
+```cpp
+//embaralha o vetor original
+void embaralhar(vector<int>& v);
+```
+
+- **ordenar** - selection sort utilizando 
+```cpp
+//ordena o vetor original
+void ordenar(vector<int>& v);
+```
+
+### **Conjuntos**: 3 funções
+- **exclusivos**: O fiscal permitiu a entrada de um único representante de cada valor, ou seja, uma lista dos valores que aparecem na fila sem repetição. Que conjunto foi formado?
+```cpp
+//{1, 3, 4, 3, -1, -2, -2} -> {1, 3, 4, -1, -3}
+vector<int> exclusivos(const vector<int>& v);
+```
+
+- **diferentes**: Qual a lista dos diferentes níveis de stress que aparecem?
+```cpp
+//{1, 3, 4, 3, -1, -2, -2} -> {1, 3, 4}
+vector<int> diferentes(const vector<int>& v);
+```
+
+- **abandonados**: quais pessoas ficaram na fila após remover um exemplar de cada valor?
+```cpp
+//{1, 3, 4, 3, -1, -2, -2} -> {3, -2}
+vector<int> abandonados(const vector<int>& v);
+```
+
+## BLOCO III
+
+### **Map - Manipulação**: 3 funções
+- **sozinhos**: Quais PESSOAS eram as únicas representantes do seu nível de stress na fila? (abs)
+```cpp
+//{1, 3, 4, 3, -1, -3, -3} -> {4}
+vector<int> sozinhos(const vector<int>& v);
+```
+
+{1, 3, 4, 3, -1, -2, -2} -> {3, -2}
+- **mais_ocorrencias**: Qual a maior quantidade de ocorrências do mesmo nível de stress. (abs)
+    - ```{1, 3, 4, 5, -1, -5, -5} -> 3```
+- **mais_recorrentes**: Quais os níveis de stress mais recorrentes. (abs)
+    - ```{1, 3, 4, 5, -1, -5, -5, 3, -3} -> {5, 3}```
+
+### **Proximidade**: 2 funções
+- **briga** Quando alguém super estressado(>50) está ao lado de duas pessoas muito estressadas(>30) pode dar briga. Quantas vezes essa situação acontece?
+- **apaziguado** Se alguém hiper estressado(>80) estiver ao lado de pelo menos uma pessoa bem tranquila (<10) ela vai ser apaziguada. Em que posições estão esses que serão apaziguados?
+
+
+### **Sequências**: 3 funções
+- **quantos_times** Duas ou mais pessoas do mesmo sexo seguidas podem formar um time. Quantos times existem na fila?
+- **maior_time** Qual o maior time que apareceu na fila?
+- **sozinhos** Quantas pessoas não estavam em um time?
+
+### **Grupos**: 2 funções
+- **casais**: Casais são formados quando quando um homem e uma mulher com o mesmo nível de stress são formados. O 3 e o -3 formam um casal. Os participantes fossem orientados a sair da fila e procurar seu par. Quantos casais poderiam ser formados?
+- **trios**: Pedimos pros participantes se organizassem em trios. Todos os 3 deveriam estar com o mesmo nível de stress.Quantos trios podem ser formados?
+
+### **Alteração**: 3 funções
+- **remove**: Dado a pessoa X, como fica a fila após remover X?
+- **insert**: Como fica a fila se eu inserir a pessoa X na posição Y.
+- **dance**: O coordenador disse: se você está do lado de alguém da com o mesmo nível de stress que você, saia da fila com ele. Quando os pares saiam, as vezes se formavam novos pares que também saíam. Quem ficou na fila?
+
+
